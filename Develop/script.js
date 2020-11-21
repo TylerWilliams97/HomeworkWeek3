@@ -12,61 +12,59 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-var speciallist = "!@#$%^&*()";
-var lowerlist = "abcdefghijklmnopqrstuvwxyz";
-var upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numlist = "1234567890";
+
+//var declaring possible symbols
+var speciallist =["!","@","#","$","%","^","&","*"];
+var lowerlist = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var upperlist = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+var numlist = ['1','2','3','4','5','6','7','8','9','0'];
 
 
+//start of function for pw gen
+var generatePassword = function(){
+  var password = [];
 
-function getspecial(){
-  return speciallist[Math.floor(Math.random()*speciallist.length)];
-}
+  var possiblecharacters = [];
 
+  var Randomnumber;
 
+//user input
+  var length= window.prompt("how long would you like your password 8-128 characters?");
+  var usespecial= window.confirm("Should i use special charachters? Ex.!, @, #, $");
+  var uselower= window.confirm("Should i use lowercase letters?");
+  var useupper= window.confirm("Should i use uppercase letters?");
+  var usenumbers= window.confirm("Should i use numbers?");
 
+  console.log(length, usespecial, uselower, useupper, usenumbers);
 
+//if true from user input it will include
+    if (usespecial) {
+      possiblecharacters = possiblecharacters.concat(speciallist);
+    }
+    if (uselower) {
+      possiblecharacters = possiblecharacters.concat(lowerlist);
+    }
+    if (useupper) {
+      possiblecharacters = possiblecharacters.concat(upperlist);
+    }
+    if (usenumbers) {
+      possiblecharacters = possiblecharacters.concat(numlist);
+    } 
+  console.log(possiblecharacters);
 
-function userchartype(){
-  var length = prompt("Enter length of password 8-64"); console.log(length);
+//for statement to get random number to use to get random symbol
+  for (let i = 0; i < length; i++) {
+    Randomnumber = Math.floor(Math.random()*possiblecharacters.length);
+    console.log("Randomnumber", Randomnumber);
 
-  var lowercase = prompt("would you like to include lower case letters", "Yes or No"); 
-if(lowercase === "Yes" ){
-  lowercase = true;
-}
-if(lowercase === "No"){
-  lowercase = false;
-}
-console.log("lowercase "+lowercase);
-
-  var uppercase = prompt("would you like to include upper case letters", "Yes or No");
-if(uppercase === "Yes" ){
-  uppercase = true; 
-}
-if(uppercase === "No"){
-  uppercase = false;
-}
-console.log("upercase "+uppercase);
-
-  var numeric = prompt("would you like to include numbers", "Yes or No");
-if(numeric === "Yes"){
-  numeric = true;
-}
-if(numeric === "No"){
-  numeric = false;
-}
-console.log("numeric "+numeric);
-
-  var special = prompt("Would you like to include special characters Ex.!,@,#,$,%","Yes or No")
-if(special === "Yes"){
-  special  = true;
-}
-if(special === "No"){
-  special = false;
-}
-console.log("special "+special);
+//uses random number to pull symbol from possiblecharacters
+    password.push(possiblecharacters[Randomnumber]);
+  }
+  console.log(password);
 
 
+//sends result to html
+      return password.join("");
 
 }
 
@@ -81,9 +79,9 @@ console.log("special "+special);
 
 
 
-function userinput(){
-userchartype();
-getspecial();
-}
+
+
+
+
 
 
