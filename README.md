@@ -1,4 +1,4 @@
-# HomeworkWeek3
+# Password Generator
 password Generator
 A Basic password generator. answer a few questions and, voilà! password.
 
